@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringTest {
     @Test
@@ -37,4 +38,21 @@ public class StringTest {
         assertThat(substring).isEqualTo("1,2");
     }
 
+    @Test
+    @DisplayName("chartAt()으로 특정문자열을 가저온다")
+    void charAtTest() {
+        String text = "abc";
+        assertThat(text.charAt(0)).isEqualTo('a');
+        assertThat(text.charAt(1)).isEqualTo('b');
+        assertThat(text.charAt(2)).isEqualTo('c');
+    }
+
+    @Test
+    @DisplayName("chartAt()으로 특정문자열 가져온다 범위초과.")
+    void charAtTestwithOutBoundException() {
+        String text = "abc";
+        assertThatThrownBy(() -> {
+            text.charAt(4);
+        }).isInstanceOf(StringIndexOutOfBoundsException.class);
+    }
 }
