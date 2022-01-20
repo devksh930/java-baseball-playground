@@ -22,11 +22,19 @@ public class StringTest {
     }
 
     @Test
-    @DisplayName("1을 , 로 spliat 한다")
+    @DisplayName("1을 , 로 split 한다")
     void splitTest2() {
         String text = "1";
         String[] split = text.split(",");
         assertThat(split).containsExactly("1");
+    }
+
+    @Test
+    @DisplayName("(1,2) 값이 주어졌을 때 ()제거")
+    void substring() {
+        String text = "(1,2)";
+        String substring = text.substring(1, 4);
+        assertThat(substring).isEqualTo("1,2");
     }
 
 }
