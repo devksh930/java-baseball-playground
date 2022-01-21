@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashSet;
@@ -38,8 +39,8 @@ public class SetCollectionTest {
         assertThat(numbers.contains(1)).isTrue();
         assertThat(numbers.contains(2)).isTrue();
         assertThat(numbers.contains(3)).isTrue();
-        assertThat(numbers.contains(3)).isTrue();
-        assertThat(numbers.contains(3)).isTrue();
+        assertThat(numbers.contains(4)).isTrue();
+        assertThat(numbers.contains(5)).isTrue();
     }
 
     @ParameterizedTest
@@ -47,6 +48,15 @@ public class SetCollectionTest {
     @DisplayName("Set에 값이 존재하는지 확인한다. 리팩토링")
     void contains_refactor(int number) {
         assertTrue(numbers.contains(number));
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1:true", "2:true", "3:true","4:false","5:false"}, delimiter = ':')
+    void SetCsvSourceTest(int input, boolean expected) {
+        numbers.remove(4);
+        numbers.remove(5);
+
+        assertThat(numbers.contains(input)).isEqualTo(expected);
     }
 
 }
