@@ -10,22 +10,32 @@ import java.util.Set;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class SetCollectionTest {
-    private Set<Integer> numbres;
+    private Set<Integer> numbers;
 
     @BeforeEach
     void setUp() {
-        numbres = new HashSet<>();
-        numbres.add(1);
-        numbres.add(2);
-        numbres.add(3);
-        numbres.add(4);
-        numbres.add(5);
+        numbers = new HashSet<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.add(5);
     }
 
     @Test
     @DisplayName("Set의 Size를 구한다")
     void size() {
-        assertThat(numbres.size()).isEqualTo(5);
+        assertThat(numbers.size()).isEqualTo(5);
+    }
+
+    @Test
+    @DisplayName("Set에 값이 존재하는지 확인한다.")
+    void contains() {
+        assertThat(numbers.contains(1)).isTrue();
+        assertThat(numbers.contains(2)).isTrue();
+        assertThat(numbers.contains(3)).isTrue();
+        assertThat(numbers.contains(3)).isTrue();
+        assertThat(numbers.contains(3)).isTrue();
     }
 
 }
